@@ -175,7 +175,7 @@ def shell():
 	print "exit the gitDFS shell"
 
 def refresh(cur_dir,git_r):
-	exe_fetch = 'git --git-dir=../gitDFS/'+cur_dir+'/.git fetch '+git_r
+	exe_fetch = 'git --git-dir=../gitDFS/'+cur_dir+'/.git fetch'
 	print 'fetch:'+exe_fetch
 	(sta,info) = commands.getstatusoutput(exe_fetch)
 	print info
@@ -216,7 +216,7 @@ def update_local(msg,local_name,objFile,local_git):
 	print 'local update exe_commit:'+exe_commit
 	(sta1,info1) = commands.getstatusoutput(exe_commit)
 	print info1
-	exe_push = 'git --git-dir=../gitDFS/'+local_name+'/.git --work-tree=../gitDFS/'+local_name+' push '+local_git+' master'
+	exe_push = 'git --git-dir=../gitDFS/'+local_name+'/.git --work-tree=../gitDFS/'+local_name+' push '+local_git+' HEAD'
 	print 'local update exe_push:'+exe_push
 	(sta2,info2) = commands.getstatusoutput(exe_push)
 	print info2
