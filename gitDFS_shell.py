@@ -149,9 +149,10 @@ def shell():
 						else:
 							print 'the file '+objFile+' does not exist, you can\'t use command:'+cmd
 							return
+					if existed == 'F':
+						f = open(objFile_whole,'w')
+						f.close()
 
-					f = open(objFile_whole,'w')
-					f.close()
 					os.system('chmod a+w+r '+objFile_whole)
 					auxi.write(objFile_whole)
 					msg = raw_input('please type in the modify message:')
@@ -167,8 +168,10 @@ def shell():
 						else:
 							print 'the file '+objFile+' does not exist, you can\'t use command:'+cmd
 							return
-					f = open(objFile_whole,'w')
-					f.close()
+					if existed == 'F':
+						f = open(objFile_whole,'w')
+						f.close()
+
 					os.system('chmod a+w+r '+objFile_whole)
 					os.system('vim '+objFile_whole)
 					msg = raw_input('please type in the modify message:')
@@ -206,7 +209,7 @@ def update(msg,cur_dir,objFile,git_r):
 	print 'update exe_commit:'+exe_commit
 	(sta1,info1) = commands.getstatusoutput(exe_commit)
 	print info1
-	exe_push = 'git --git-dir=../gitDFS/'+cur_dir+'/.git --work-tree=../gitDFS/'+cur_dir+' push '+git_r
+	exe_push = 'git --git-dir=../gitDFS/'+cur_dir+'/.git --work-tree=../gitDFS/'+cur_dir+' push '+git_r+' master'
 	print 'update exe_push:'+exe_push
 	(sta2,info2) = commands.getstatusoutput(exe_push)
 	print info2
