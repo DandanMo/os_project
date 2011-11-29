@@ -68,8 +68,6 @@ def connect():
 	fr.close()
 	return (remote_dir,remote_git)
 
-if __name__ == '__main__':
-	connect()
 	
 
 	
