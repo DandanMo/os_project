@@ -25,8 +25,8 @@ def connect():
 	print '--------------------------init connecting...---------------------------------'
 	#--create the remote copy directories
 	path = os.environ['HOME']+'/gitDFS'
-	glb_path = '/home/modandan/os_project/source/info/'
-	
+	#glb_path = '/home/modandan/os_project/source/info/'
+	glb_path = os.environ['HOME']+'/os_project/info/'
 	f = open(glb_path+'remote_list','r')
 	remote_dir = []
 	remote_git = []
