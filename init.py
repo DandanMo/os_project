@@ -4,12 +4,17 @@ import os
 
 def local(local_name):
 	print "--------------------------initializing...-------------------------------"
-	path = '~/gitDFS'
+	path = os.environ['HOME']+'/gitDFS'
         commands.getstatusoutput('mkdir '+path)  #--the root directory
 	local_dir = path+'/'+local_name
 	os.system('mkdir '+local_dir)  #--the local directory
 	(sta,info) = commands.getstatusoutput('git init '+local_dir)
 	print info
+	#-- create an empty default file
+	filePath = open(local_dir+'/default.empty','w')
+	filePath.close()
+	(s,i) = commands.getstatusoutput('git --git-dir=../gitDFS/'+local_name+'/.git --work-tree=../gitDFS/'+local_name+' add default.empty')
+	(s1,i1) = commands.getstatusoutput('git --git-dir=../gitDFS/'+local_name+'/.git --work-tree=../gitDFS/'+local_name+' commit -a -m \'d\'')
 	local_git = path+'/'+local_name+'.git'
 	(sta1,info1) = commands.getstatusoutput('git clone --bare '+local_dir+' '+local_git) #--the local git
 	print info1
