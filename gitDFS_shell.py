@@ -44,9 +44,9 @@ def shell():
 			if (pit.find('_remote')!=-1): #-- remote ls
 				#print 'remote ls'
 				if auxi.check_remote(remote_git,remote_dir):
-					#git_r = auxi.getRemoteGit(remote_git,remote_dir,pit)
+					git_r = auxi.getRemoteGit(remote_git,remote_dir,pit)
 					#(sta,info) = commands.getstatusoutput('git pull '+git_r)
-					refresh(cur_dir)
+					refresh(cur_dir,git_r)
 					os.system('ls '+pit)
 				else:
 					print 'error occurred in '+cmd
@@ -91,7 +91,7 @@ def shell():
 				cur_dir = auxi.getCurrentDir(pit)
 				if pit.find('_remote')!=-1: #-- remote read
 					print 'remote read'
-					#git_r = auxi.getRemoteGit(remote_git,remote_dir,pit)
+					git_r = auxi.getRemoteGit(remote_git,remote_dir,pit)
 					#exe_fetch = 'git --git-dir=../gitDFS/'+cur_dir+'/.git fetch'
 					#print 'fetch:'+exe_fetch
 					#(sta,info) = commands.getstatusoutput(exe_fetch)
@@ -100,7 +100,7 @@ def shell():
 					#print 'merge:'+exe_merge
 					#(sta1,info1) = commands.getstatusoutput(exe_merge)
 					#print info1
-					refresh(cur_dir)
+					refresh(cur_dir,git_r)
 					os.system('chmod a+r '+objFile_whole)
 					os.system('vim '+objFile_whole)
 				elif pit.find('.git')!=-1:  #-- git read
@@ -174,8 +174,8 @@ def shell():
 		cmd = raw_input('gitDFS >> ')
 	print "exit the gitDFS shell"
 
-def refresh(cur_dir):
-	exe_fetch = 'git --git-dir=../gitDFS/'+cur_dir+'/.git fetch'
+def refresh(cur_dir,git_r):
+	exe_fetch = 'git --git-dir=../gitDFS/'+cur_dir+'/.git fetch '+git_r
 	print 'fetch:'+exe_fetch
 	(sta,info) = commands.getstatusoutput(exe_fetch)
 	print info
