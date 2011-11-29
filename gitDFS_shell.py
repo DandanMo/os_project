@@ -150,7 +150,8 @@ def shell():
 							print 'the file '+objFile+' does not exist, you can\'t use command:'+cmd
 							return
 
-					file(objFile_whole)
+					f = open(objFile_whole,'w')
+					f.close()
 					os.system('chmod a+w+r '+objFile_whole)
 					auxi.write(objFile_whole)
 					msg = raw_input('please type in the modify message:')
@@ -166,7 +167,8 @@ def shell():
 						else:
 							print 'the file '+objFile+' does not exist, you can\'t use command:'+cmd
 							return
-					file(objFile_whole)
+					f = open(objFile_whole,'w')
+					f.close()
 					os.system('chmod a+w+r '+objFile_whole)
 					os.system('vim '+objFile_whole)
 					msg = raw_input('please type in the modify message:')
